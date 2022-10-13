@@ -31,23 +31,12 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
-//
-//    @GET
-//    @Path("/Gauge")
-//    @Produces(APPLICATION_JSON)
-//    public String getCustomMetric() throws IOException {
-//        Writer writer = new StringWriter();
-//        CollectorRegistry registry = new CollectorRegistry();
-//        Gauge gauge = Gauge.build().name("TESTANDO_CLIENT_REQUEST").help("CLIENT_REQUEST_TIMED").register(registry);
-//        gauge.set(metricValue);
-//        TextFormat.write004(writer, registry.metricFamilySamples());
-//        return writer.toString();
-//    }
+
     @GET
     @Path("/api")
     public String getAPI() {
         Client client = ClientBuilder.newClient(new ClientConfig().register(String.class));
-        WebTarget webTarget = client.target("http://localhost:6060/hello");
+        WebTarget webTarget = client.target("http://localhost:6060/");
 
         Invocation.Builder builder = webTarget.request(APPLICATION_JSON);
         Response response = builder.get();
